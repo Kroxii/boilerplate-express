@@ -9,6 +9,14 @@ app.use(function(req, res, next){
   next();
 });
 
+app.get("/now", function(req, res, next) {
+  req.time = new Date().toString();
+  next();
+},
+(req, res) => {
+  res.send({ "time": req.time });
+});
+
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/views/index.html");
 });
